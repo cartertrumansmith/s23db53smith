@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+  p  Rows: #{query.rows}, Columns: #{query.cols}
+  - let rows = Number(query.rows)
+  - let col = Number(query.cols)
+  -
+    function getValue(i,j){
+      if(i==j){
+        return 1;
+      }else if(i>j){
+        return 0;
+      }else if(i<j){
+        return (j+1)-(i);
+      }
+    }
+  if Number.isInteger(rows) && Number.isInteger(col)
+    if rows<=10 && col<=10 && rows>=1 && col>=1
+      table#outer
+        - for(let i=0; i<rows; i++) {
+          tr#middle
+            - for(let j=0; j<col; j++) {
+              td= getValue(i,j)
+            - }
+        - }
+    else
+      p Out of Bounds
+  else
+    p Not an Integer

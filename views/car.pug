@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{color:"red",make:"Honda",model:"Civic",style:"Sedan",price:10000},{color:"blue",make:"Honda",model:"Civic",style:"Sedan",price:10000},{color:"white",make:"Honda",model:"Civic",style:"Sedan",price:10000}]
+  div(class="container-fluid")
+    div(class="row")
+      each car in results
+        div(class="row")
+          div(class="col-sm-2") #{car.color}
+          div(class="col-sm-2") #{car.make}
+          div(class="col-sm-2") #{car.model}
+          div(class="col-sm-2") #{car.style}
+          div(class="col-sm-2") #{car.price}

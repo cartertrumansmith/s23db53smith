@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  - let image_names = ["acura.jpg","corvette.jpg","ford.jpg","honda.jpg","jeep.jpg"]
+  - for(let i=0;i<3;i++){
+      - let idx = Math.floor(Math.random()*5);
+      - let source = `/images/${image_names[idx]}`;
+      img(src=source, alt="car", height=300, width = 300)
+  - }
