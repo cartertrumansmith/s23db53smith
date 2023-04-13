@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
+var Car = require("./models/car")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -36,6 +36,49 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
+
+
+async function recreateDB(){
+  await Car.deleteMany();
+  let instance1 = new Car({
+    color: 'Red',
+    make: 'Toyota',
+    model: 'Camry',
+    style: 'Sedan',
+    price: 10000
+  });
+  let instance2 = new Car({
+    color: 'White',
+    make: 'Acura',
+    model: 'TL',
+    style: 'Sedan',
+    price: 25000
+  });
+  let instance3 = new Car({
+    color: 'Black',
+    make: 'Ford',
+    model: 'F-150',
+    style: 'Truck',
+    price: 40000
+  });
+ instance1.save().then(doc=>{
+  console.log("First object saved")}
+ ).catch(err=>{
+ console.error(err)
+ });
+ instance2.save().then(doc=>{
+  console.log("Second object saved")}
+ ).catch(err=>{
+ console.error(err)
+ });
+ instance3.save().then(doc=>{
+  console.log("Third object saved")}
+ ).catch(err=>{
+ console.error(err)
+ });
+}
+let reseed = true;
+if (reseed) {recreateDB();}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
