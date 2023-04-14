@@ -83,7 +83,7 @@ if (reseed) {recreateDB();}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/car', carRouter);
+app.use('/cars', carRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);

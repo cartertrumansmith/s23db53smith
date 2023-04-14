@@ -31,3 +31,16 @@ exports.car_list = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }
    };
+
+   // VIEWS
+// Handle a show all view
+exports.car_view_all_Page = async function(req, res){
+    try{
+        theCars = await Car.find();
+        res.render('cars', { title: 'Car Search Results', results: theCars });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+   };
